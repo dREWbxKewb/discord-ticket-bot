@@ -1,5 +1,5 @@
-import { Client, IntentsBitField } from "discord.js";
-import dotenv from "dotenv";
+import { Client, IntentsBitField } from 'discord.js';
+import dotenv from 'dotenv';
 dotenv.config();
 
 /**
@@ -11,10 +11,10 @@ dotenv.config();
  * @see https://discord.com/developers/docs/topics/gateway#message-content-intent
  */
 const intentOptions = [
-  IntentsBitField.Flags.Guilds,        // <-- server
-  IntentsBitField.Flags.GuildMembers,  // <-- members in server
+  IntentsBitField.Flags.Guilds, // <-- server
+  IntentsBitField.Flags.GuildMembers, // <-- members in server
   IntentsBitField.Flags.GuildMessages, // <-- messages in server
-  IntentsBitField.Flags.MessageContent // <-- messages content
+  IntentsBitField.Flags.MessageContent, // <-- messages content
 ];
 
 /**
@@ -25,7 +25,7 @@ const intentOptions = [
  * @method: `.on("event" callback)` for bot event handling
  */
 const client = new Client({
-  intents: intentOptions
+  intents: intentOptions,
 });
 
 /**
@@ -39,16 +39,20 @@ const client = new Client({
  * @description: for BOT API documentation
  */
 
-client.on("ready", (bot) => {
-  console.log(`✅ ${bot.options.rest.authPrefix} ${bot.user.tag} is online! Listening to channels: ${bot.channels}`);
+client.on('ready', (bot) => {
+  console.log(
+    `✅ ${bot.options.rest.authPrefix} ${bot.user.tag} is online! Listening to channels: ${bot.channels}`
+  );
 });
 
-client.on("messageCreate", (message) => {
+client.on('messageCreate', (message) => {
   /* this validation disallows bots from responding to each other/themselves, remove at your own risk 💀 */
   if (message.author.bot) return;
 
   /* message sent in server from any user: */
-  console.log(`Discord message: "${message.content}" from User: ${message.author.username} at ${message.createdAt}`);
+  console.log(
+    `Discord message: "${message.content}" from User: ${message.author.username} at ${message.createdAt}`
+  );
 
   /* bot will react to any message sent with this emoji */
   message.react('🤓');
